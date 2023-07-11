@@ -29,6 +29,14 @@
 #include <fficonfig.h>
 #include <ffi.h>
 
+#if __loongarch_frlen == 0 && !defined(__loongarch_soft_float)
+#define __loongarch_soft_float 1
+#elif __loongarch_frlen == 32 && !defined(__loongarch_single_float)
+#define __loongarch_single_float 1
+#elif __loongarch_frlen == 64 && !defined(__loongarch_double_float)
+#define __loongarch_double_float 1
+#endif
+
 /* Define aliases so that we can handle all ABIs uniformly.  */
 
 #if __SIZEOF_POINTER__ == 8

@@ -53,6 +53,15 @@ typedef enum ffi_abi
   FFI_LAST_ABI,
 
 #if defined(__loongarch64)
+
+#if __loongarch_frlen == 0 && !defined(__loongarch_soft_float)
+#define __loongarch_soft_float 1
+#elif __loongarch_frlen == 32 && !defined(__loongarch_single_float)
+#define __loongarch_single_float 1
+#elif __loongarch_frlen == 64 && !defined(__loongarch_double_float)
+#define __loongarch_double_float 1
+#endif
+
 #if defined(__loongarch_soft_float)
   FFI_DEFAULT_ABI = FFI_LP64S
 #elif defined(__loongarch_single_float)

@@ -28,6 +28,7 @@
 
 #include <ffi.h>
 #include <ffi_common.h>
+#include "ffitarget.h"
 #include <tramp.h>
 
 #include <stdlib.h>
@@ -35,6 +36,7 @@
 
 #if defined(__loongarch_soft_float)
 # define ABI_FRLEN 0
+# define ABI_FLOAT float
 #elif defined(__loongarch_single_float)
 # define ABI_FRLEN 32
 # define ABI_FLOAT float
